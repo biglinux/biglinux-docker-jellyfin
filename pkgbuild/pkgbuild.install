@@ -1,30 +1,43 @@
-## arg 1:  the new package version
-#pre_install() {
-	# do something here
-#}
+# File: biglinux-docker-jellyfin.install
 
-## arg 1:  the new package version
-#post_install() {
-    # do something here
-#}
+# Executed before package installation
+pre_install() {
+	# Check if Docker is installed
+	if ! command -v docker >/dev/null 2>&1; then
+		echo "The Docker package is not installed. Please install it before continuing."
+		exit 1
+	fi
 
-## arg 2:  the old package version
-#pre_upgrade() {
-	# do something here
-#}
+	# Start the Jellyfin container using docker-compose
+	echo "Starting the Jellyfin container..."
+	docker-compose -f /etc/docker-biglinux/jellyfyn/docker-compose.yml up -d
+}
 
-## arg 2:  the old package version
-#post_upgrade() {
-	#post_install
-#}
+# Executed after package installation
+post_install() {
+	# Nothing to be done here
+}
 
-## arg 1:  the old package version
-#pre_remove() {
-	# do something here
-#}
+# Executed before package upgrade
+pre_upgrade() {
+	# Nothing to be done here
+}
 
-## arg 1:  the old package version
-#post_remove() {
-	# do something here
-#}
+# Executed after package upgrade
+post_upgrade() {
+	# Execute the same actions as post_install
+	post_install
+}
+
+# Executed before package removal
+pre_remove() {
+	# Stop and remove the Jellyfin container
+	echo "Stopping and removing the Jellyfin container..."
+	docker-compose -f /etc/docker-biglinux/jellyfyn/docker-compose.yml down
+}
+
+# Executed after package removal
+post_remove() {
+	# Nothing to be done here
+}
  
