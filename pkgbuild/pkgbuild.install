@@ -40,4 +40,3 @@ pre_remove() {
 post_remove() {
 	# Nothing to be done here
 }
- 
