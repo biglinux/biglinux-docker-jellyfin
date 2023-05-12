@@ -1,7 +1,7 @@
 # Maintainer: Tales A. Mendonça <talesam@gmail.com>
 
 pkgname=biglinux-docker-jellyfin
-pkgdesc="Open media server to manage and stream content."
+pkgdesc="Open media server to manage and stream content"
 depends=('biglinux-docker-config')
 # makedepends=('')
 # conflicts=('')

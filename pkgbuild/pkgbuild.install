@@ -10,7 +10,7 @@ pre_install() {
 
 	# Start the Jellyfin container using docker-compose
 	echo "Starting the Jellyfin container..."
-	docker-compose -f /etc/docker-biglinux/jellyfyn/docker-compose.yml up -d
+	docker-compose -f /etc/docker-biglinux/jellyfin/docker-compose.yml up -d
 }
 
 # Executed after package installation
@@ -33,7 +33,7 @@ post_upgrade() {
 pre_remove() {
 	# Stop and remove the Jellyfin container
 	echo "Stopping and removing the Jellyfin container..."
-	docker-compose -f /etc/docker-biglinux/jellyfyn/docker-compose.yml down
+	docker-compose -f /etc/docker-biglinux/jellyfin/docker-compose.yml down
 }
 
 # Executed after package removal
