@@ -3,7 +3,7 @@ Version=1.0
 Terminal=false
 Type=Application
 Name=Jellyfin
-Exec=/usr/bin/biglinux-webapp --class=localhost_8096,Chromium-browser --profile-directory=Default --app=http://localhost_8096
+Exec=/usr/bin/biglinux-webapp --class_localhost:8096,Chromium-browser --profile-directory=Default --app=http://localhost:8096
 Icon=/usr/share/icons/hicolor/scalable/apps/docker-jellyfin.svg
 Categories=Docker;
 StartupWMClass=localhost:8096
