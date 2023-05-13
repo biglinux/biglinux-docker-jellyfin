@@ -11,8 +11,8 @@ post_install() {
 	# Start the Jellyfin container using docker-compose
     echo "Starting the Jellyfin container..."
 
-    # Expand ${HOME} and execute docker-compose with eval
-    eval "HOME=$HOME docker-compose -f /etc/docker-biglinux/jellyfin/docker-compose.yml up -d"
+    # Expand $SUDO_USER and execute docker-compose with eval
+    eval "HOME=/home/$SUDO_USER docker-compose -f /etc/docker-biglinux/jellyfin/docker-compose.yml up -d"
 }
 
 # Executed before package removal
