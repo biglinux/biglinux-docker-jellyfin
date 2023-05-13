@@ -13,6 +13,10 @@ post_install() {
 
     # Expand $SUDO_USER and execute docker-compose with eval
     eval "HOME=/home/$SUDO_USER docker-compose -f /etc/docker-biglinux/jellyfin/docker-compose.yml up -d"
+    
+    # Set the correct owner and group for the Docker folder and its contents
+    echo "Setting correct permissions for Docker folder..."
+    chown -R $SUDO_USER:$SUDO_USER /home/$SUDO_USER/Docker
 }
 
 # Executed before package removal
