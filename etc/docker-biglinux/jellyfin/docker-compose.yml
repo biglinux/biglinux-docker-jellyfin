@@ -8,9 +8,9 @@ services:
       #- TZ=America/Sao_Paulo
       - UMASK_SET=022
     volumes:
-      - /home/$USER/Docker/Jellyfin/config:/config
-      - /home/$USER/Docker/Jellyfin/cache:/cache
-      - /home/$USER/Docker/Jellyfin/media:/media
+      - /home/{$USER}/Docker/Jellyfin/config:/config
+      - /home/{$USER}/Docker/Jellyfin/cache:/cache
+      - /home/{$USER}/Docker/Jellyfin/media:/media
     ports:
       - "8096:8096"
     restart: always
