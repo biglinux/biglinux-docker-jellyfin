@@ -1,7 +1,7 @@
 # File: biglinux-docker-jellyfin.install
 
-# Executed before package installation
-pre_install() {
+# Executed after package installation
+post_install() {
 	# Check if Docker is installed
 	if ! command -v docker >/dev/null 2>&1; then
 		echo "The Docker package is not installed. Please install it before continuing."
