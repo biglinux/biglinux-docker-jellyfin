@@ -6,17 +6,41 @@ services:
     container_name: jellyfin
     environment:
       #- TZ=America/Sao_Paulo
+      # Specify a timezone to use, see this (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)
+      
+      #- JELLYFIN_PublishedServerUrl=192.168.0.5
+      # Optional - Set the autodiscovery response domain or IP address.
+      
       - UMASK_SET=022
+      # Sets the file permission mask for newly created files and directories within the Jellyfin container.
+      
     volumes:
       - ${HOME}/Docker/Jellyfin/config:/config
-      - ${HOME}/Docker/Jellyfin/cache:/cache
-      - ${HOME}/Docker/Jellyfin/media:/media
+        # Jellyfin data storage location. This can grow very large, 50gb+ is likely for a large collection.
+      
+      - ${HOME}/Docker/Jellyfin/tvseries:/data/tvshows
+        # /path/to/tvseries:/data/tvshows
+      
+      - ${HOME}/Docker/Jellyfin/movies:/data/movies
+        # /path/to/movies:/data/movies
+    
     ports:
       - "8096:8096"
+        # Http webUI.
+      
+      - "8920:8920"
+        # Optional - Https webUI (you need to set up your own certificate).
+      
+      - "7359:7359/udp"
+        # Optional - Allows clients to discover Jellyfin on the local network.
+      
+      - "1900:1900/udp"
+        # Optional - Service discovery used by DLNA and clients.
+    
     restart: always
     networks:
       big-net:
 
 networks:
   big-net:
-      name: big-net
+    name: big-net
