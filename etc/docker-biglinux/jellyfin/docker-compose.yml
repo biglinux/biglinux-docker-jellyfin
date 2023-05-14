@@ -1,3 +1,4 @@
+# For additional information: https://hub.docker.com/r/linuxserver/jellyfin
 version: "3.9"
 
 services:

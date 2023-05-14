@@ -28,6 +28,10 @@ pre_remove() {
 	# Stop and remove the Jellyfin container
 	echo "Stopping and removing the Jellyfin container..."
 	docker-compose -f /etc/docker-biglinux/jellyfin/docker-compose.yml down
+	
+	# Remove symlink to docker-compose.yml in Docker/Jellyfin folder
+    echo "Removing symbolic link to docker-compose.yml..."
+    rm -f /home/$SUDO_USER/Docker/Jellyfin/docker-compose.yml
 }
 
 # Executed after package removal
