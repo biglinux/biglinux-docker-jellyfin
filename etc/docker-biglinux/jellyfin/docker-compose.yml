@@ -40,8 +40,8 @@ services:
     
     restart: always
     networks:
-      big-net:
+      - jellyfin-net
 
 networks:
-  big-net:
-    name: big-net
+  jellyfin-net:
+    name: jellyfin-net
