@@ -3,6 +3,8 @@ services:
     image: jellyfin/jellyfin:latest
     container_name: jellyfin
     environment:
+      # The JELLYFIN_PublishedServerUrl environment variable sets the autodiscovery response domain or IP address, allowing the Jellyfin server to be accessible at http://localhost:8096.
+      - JELLYFIN_PublishedServerUrl=http://localhost:8096
       #- TZ=America/Sao_Paulo
       # Specify a timezone to use, see this (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)
       
