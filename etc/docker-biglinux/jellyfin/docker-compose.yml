@@ -5,37 +5,38 @@ services:
     environment:
       # The JELLYFIN_PublishedServerUrl environment variable sets the autodiscovery response domain or IP address, allowing the Jellyfin server to be accessible at http://localhost:8096.
       - JELLYFIN_PublishedServerUrl=http://localhost:8096
-      #- TZ=America/Sao_Paulo
+
       # Specify a timezone to use, see this (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List)
+      #- TZ=America/Sao_Paulo
       
-      #- JELLYFIN_PublishedServerUrl=192.168.0.5
       # Optional - Set the autodiscovery response domain or IP address.
-      
-      - UMASK_SET=022
-      # Sets the file permission mask for newly created files and directories within the Jellyfin container.
+      #- JELLYFIN_PublishedServerUrl=192.168.0.5
       
     volumes:
+      # Jellyfin data storage location. This can grow very large, 50gb+ is likely for a large collection.
       - ${HOME}/Docker/Jellyfin/config:/config
-        # Jellyfin data storage location. This can grow very large, 50gb+ is likely for a large collection.
       
+      # Cache local Jellyfin
+      - ${HOME}/Docker/Jellyfin/cache:/cache
+
+      # /path/to/tvseries:/data/tvshows
       - ${HOME}/Docker/Jellyfin/tvseries:/data/tvshows
-        # /path/to/tvseries:/data/tvshows
       
+      # /path/to/movies:/data/movies
       - ${HOME}/Docker/Jellyfin/movies:/data/movies
-        # /path/to/movies:/data/movies
     
     ports:
+      # Http webUI.
       - "8096:8096"
-        # Http webUI.
       
+      # Optional - Https webUI (you need to set up your own certificate).
       - "8920:8920"
-        # Optional - Https webUI (you need to set up your own certificate).
       
+      # Optional - Allows clients to discover Jellyfin on the local network.
       - "7359:7359/udp"
-        # Optional - Allows clients to discover Jellyfin on the local network.
       
+      # Optional - Service discovery used by DLNA and clients.
       - "1900:1900/udp"
-        # Optional - Service discovery used by DLNA and clients.
     
     restart: always
     networks:
